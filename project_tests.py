@@ -26,9 +26,9 @@ def sol_1_test(sol_1_dict):
     else:
         for k, v in sol_1_dict.items():
             if sol_1_dict_[k] != sol_1_dict[k]:
-                 print(f'Expected: {sol_1_dict_[k]}. Actual: {sol_1_dict[k]}')
+#                  print(f'Expected: {sol_1_dict_[k]}. Actual: {sol_1_dict[k]}')
 #                 print(f'{k.replace("_____", str(sol_1_dict_[k]))}. Actual Value: {sol_1_dict[k]}')
-#                 print("Oops! It looks like the value associated with: {} wasn't right. Try again.  It might just be the datatype.  All of the values should be ints except the article_id should be a string.  Let each row be considered a separate user-article interaction.  If a user interacts with an article 3 times, these are considered 3 separate interactions.\n\n  Notice you may also find the number of unique users as 5149 if you count the null user.  However, this is hard to catch without mapping first!".format(k))
+                print("Oops! It looks like the value associated with: {} wasn't right. Try again.  It might just be the datatype.  All of the values should be ints except the article_id should be a string.  Let each row be considered a separate user-article interaction.  If a user interacts with an article 3 times, these are considered 3 separate interactions.\n\n  Notice you may also find the number of unique users as 5149 if you count the null user.  However, this is hard to catch without mapping first!".format(k))
                 
                 
 def sol_2_test(top_articles):
