@@ -13098,7 +13098,7 @@ VI. <a href="#conclusions">Extras &amp; Concluding</a></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[86]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span>
@@ -13119,12 +13119,20 @@ VI. <a href="#conclusions">Extras &amp; Concluding</a></p>
 <span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">load_user_interactions</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    OUTPUT:</span>
+<span class="sd">    A DataFrame of the contents of the user-item-interactions.csv located in the data directory</span>
+<span class="sd">    &#39;&#39;&#39;</span>    
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/user-item-interactions.csv&#39;</span><span class="p">)</span>
     <span class="k">del</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">]</span>
     <span class="n">df</span><span class="o">.</span><span class="n">article_id</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">article_id</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span>
 
 <span class="k">def</span> <span class="nf">load_article_content</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    OUTPUT:</span>
+<span class="sd">    A DataFrame of the contents of the articles_community.csv located in the data directory</span>
+<span class="sd">    &#39;&#39;&#39;</span>    
     <span class="n">df_content</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/articles_community.csv&#39;</span><span class="p">)</span>
     <span class="k">del</span> <span class="n">df_content</span><span class="p">[</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">df_content</span>
@@ -13134,7 +13142,6 @@ VI. <a href="#conclusions">Extras &amp; Concluding</a></p>
 
 
 <span class="c1"># Show df to get an idea of the data</span>
-<span class="c1"># df.article_id = df.article_id.astype(str)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -13148,7 +13155,7 @@ VI. <a href="#conclusions">Extras &amp; Concluding</a></p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[1]:</div>
+    <div class="prompt output_prompt">Out[86]:</div>
 
 
 
@@ -14121,7 +14128,6 @@ max_views_by_user: 364
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">load_user_interactions</span><span class="p">()</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">email_mapper</span><span class="p">();</span> <span class="k">del</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
-<span class="c1"># df.article_id = df.article_id.astype(str)</span>
 
 <span class="k">def</span> <span class="nf">get_top_articles</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
@@ -14158,61 +14164,8 @@ max_views_by_user: 364
                  <span class="o">.</span><span class="n">count</span><span class="p">()</span>
                  <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
                  <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;cnt&#39;</span><span class="p">})</span>
-<span class="c1">#                  .drop([&#39;email&#39;],axis=1)</span>
                  <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;cnt&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;article_id&#39;</span><span class="p">]</span>
                  <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># set(pickle.load(open( &quot;top_5.p&quot;, &quot;rb&quot; )))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_top_articles</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_top_article_ids</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;use deep learning for image classification&#39;, &#39;insights from new york car accident reports&#39;, &#39;visualize car data with brunel&#39;, &#39;use xgboost, scikit-learn &amp; ibm watson machine learning apis&#39;, &#39;predicting churn with the spss random tree algorithm&#39;, &#39;healthcare python streaming application demo&#39;, &#39;finding optimal locations of new store using decision optimization&#39;, &#39;apache spark lab, part 1: basic concepts&#39;, &#39;analyze energy consumption in buildings&#39;, &#39;gosales transactions for logistic regression model&#39;]
-[&#39;1429.0&#39;, &#39;1330.0&#39;, &#39;1431.0&#39;, &#39;1427.0&#39;, &#39;1364.0&#39;, &#39;1314.0&#39;, &#39;1293.0&#39;, &#39;1170.0&#39;, &#39;1162.0&#39;, &#39;1304.0&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># # get_top_articles(5)</span>
-<span class="c1"># df[df.title.duplicated()].groupby(&#39;title&#39;).count()[&#39;article_id&#39;].reset_index()</span>
-            
-<span class="c1">#             .rename(columns={&#39;article_id&#39;: &#39;cnt&#39;})</span>
-<span class="c1">#             .sort_values(by=&#39;cnt&#39;, ascending=False)[&#39;title&#39;]</span>
-<span class="c1">#             .head(n=n))</span>
 </pre></div>
 
     </div>
@@ -14473,8 +14426,6 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 <span class="sd">    Provides a list of the article_ids and article titles that have been seen by a user</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">users_articles</span> <span class="o">=</span> <span class="n">user_item</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">user_id</span><span class="p">,</span> <span class="p">:]</span>
-<span class="c1">#     users_articles = np.where(users_articles == 1)[0].tolist()</span>
-<span class="c1">#     users_articles = [str(float(a_id)) for a_id in users_articles]</span>
     <span class="n">adf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">users_articles</span><span class="p">)</span>
     <span class="n">users_articles</span> <span class="o">=</span> <span class="n">adf</span><span class="p">[</span><span class="n">adf</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">users_articles</span><span class="p">,</span> <span class="n">get_article_names</span><span class="p">(</span><span class="n">users_articles</span><span class="p">)</span>
@@ -14798,6 +14749,11 @@ The top 10 recommendations for user 20 are the following article names:
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Provide your response here.</strong></p>
+<p>I would use <strong>get_top_articles</strong> / <strong>get_top_article_ids</strong> because these are simple ranking recommendations that don't require historical data for a particular user in order to give recommendations.</p>
+<p>Indeed, this is a pretty common strategy (i.e. to use generic "popular items" or "popular items by category" recommendations) for new users and then to transition to personalized recommendations gradually.</p>
+<p>The trick to success likely involves finding the healthy demarcation/hand-off point between naive, ranked recommendations vs. personalized recommendations.</p>
+<p>Transitioning too early and without enough data might make for a sub-optimal customer recommendation experience, but sticking with ranked recommendations for too long may create disinterest for your more idiosyncratic or individualistic customers.</p>
+<p>To summarize, I believe a better way to make recommendations would be to use a multi-faceted approach that incorporates a couple of the available options at various stages in the customer timeline.</p>
 
 </div>
 </div>
@@ -14817,7 +14773,7 @@ The top 10 recommendations for user 20 are the following article names:
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_user</span> <span class="o">=</span> <span class="s1">&#39;0.0&#39;</span>
 
-<span class="c1"># What would your recommendations be for this new user &#39;0.0&#39;?  As a new user, they have no observed articles.</span>
+<span class="c1"># What would your re-[-commendations be for this new user &#39;0.0&#39;?  As a new user, they have no observed articles.</span>
 <span class="c1"># Provide a list of the top 10 article ids you would give to </span>
 <span class="n">new_user_recs</span> <span class="o">=</span>  <span class="n">get_top_article_ids</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Your recommendations here</span>
 </pre></div>
@@ -15200,6 +15156,7 @@ The top 10 recommendations for user 20 are the following article names:
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Provide your response here.</strong></p>
+<p>The lesson uses a continuous, decimal movie rating system whereas this instance is binary/boolean for seen/not seen.</p>
 
 </div>
 </div>
@@ -15322,22 +15279,27 @@ The top 10 recommendations for user 20 are the following article names:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="prompt input_prompt">In&nbsp;[126]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Replace the values in the dictionary below</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mi">662</span> 
-<span class="n">b</span> <span class="o">=</span> <span class="mi">574</span> 
-<span class="n">c</span> <span class="o">=</span> <span class="mi">20</span> 
-<span class="n">d</span> <span class="o">=</span> <span class="mi">0</span> 
-
+<span class="c1"># a, b, c, d = 662, 574, 20, 0 </span>
 
 <span class="n">sol_4_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;How many users can we make predictions for in the test set?&#39;</span><span class="p">:</span> <span class="n">c</span><span class="p">,</span> <span class="c1"># letter here, </span>
-    <span class="s1">&#39;How many users in the test set are we not able to make predictions for because of the cold start problem?&#39;</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span> <span class="c1"># letter here, </span>
-    <span class="s1">&#39;How many movies can we make predictions for in the test set?&#39;</span><span class="p">:</span> <span class="n">b</span><span class="p">,</span> <span class="c1"># letter here,</span>
-    <span class="s1">&#39;How many movies in the test set are we not able to make predictions for because of the cold start problem?&#39;</span><span class="p">:</span> <span class="n">d</span> <span class="c1"># letter here</span>
+    <span class="s1">&#39;How many users can we make predictions for in the test set?&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="c1">#c,</span>
+    <span class="s1">&#39;How many users in the test set are we not able to make predictions for because of the cold start problem?&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="c1">#a, </span>
+    <span class="s1">&#39;How many movies can we make predictions for in the test set?&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="c1">#b</span>
+    <span class="s1">&#39;How many movies in the test set are we not able to make predictions for because of the cold start problem?&#39;</span><span class="p">:</span> <span class="kc">None</span> <span class="c1">#d</span>
 <span class="p">}</span>
+
+<span class="n">answers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">user_item_test</span><span class="o">.</span><span class="n">index</span><span class="p">),</span> 
+    <span class="nb">len</span><span class="p">(</span><span class="n">test_idx</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_item_test</span><span class="o">.</span><span class="n">index</span><span class="p">),</span> 
+    <span class="nb">len</span><span class="p">(</span><span class="n">user_item_test</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">test_arts</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_item_test</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="p">]</span>
+
+<span class="n">sol_4_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">sol_4_dict</span><span class="p">,</span> <span class="n">answers</span><span class="p">))</span>
 
 <span class="n">t</span><span class="o">.</span><span class="n">sol_4_test</span><span class="p">(</span><span class="n">sol_4_dict</span><span class="p">)</span>
 </pre></div>
@@ -15396,10 +15358,6 @@ The top 10 recommendations for user 20 are the following article names:
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use these cells to see how well you can use the training </span>
 <span class="c1"># decomposition to predict on test data</span>
 
-<span class="c1"># idx_in_common = user_item_train.index.isin(test_idx)</span>
-<span class="c1"># articles_in_common = user_item_train.columns.isin(test_arts)</span>
-<span class="c1"># u_test, vt_test = u_train[idx_in_common, :], vt_train[:, articles_in_common]</span>
-
 <span class="sd">&quot;&quot;&quot;Taken from: https://knowledge.udacity.com/questions/61250&quot;&quot;&quot;</span>
 <span class="n">train_arts</span> <span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">user_item_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> 
 <span class="n">train_idx</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">user_item_train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>  
@@ -15424,17 +15382,13 @@ The top 10 recommendations for user 20 are the following article names:
 
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">num_latent_feats</span><span class="p">:</span>
     <span class="c1"># restructure with k latent features</span>
-<span class="c1">#     s_new, u_new, vt_new = np.diag(s_train[:k]), u_train[:, :k], vt_train[:k, :]</span>
-<span class="c1">#     u_test_new, vt_test_new = u_test[:, :k], vt_test[:k, :]</span>
     <span class="n">s_train_lat</span><span class="p">,</span> <span class="n">u_train_lat</span><span class="p">,</span> <span class="n">vt_train_lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s_train</span><span class="p">[:</span><span class="n">k</span><span class="p">]),</span> <span class="n">u_train</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">],</span> <span class="n">vt_train</span><span class="p">[:</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>
     <span class="n">u_test_lat</span><span class="p">,</span> <span class="n">vt_test_lat</span> <span class="o">=</span>  <span class="n">u_test</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">],</span> <span class="n">vt_test</span><span class="p">[:</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>
     
     <span class="c1"># take dot product</span>
     <span class="n">user_item_test_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u_test_lat</span><span class="p">,</span> <span class="n">s_train_lat</span><span class="p">),</span> <span class="n">vt_test_lat</span><span class="p">))</span>
-<span class="c1">#     user_item_est_test = np.around(np.dot(np.dot(u_new, s_new), vt_new))</span>
     
     <span class="c1"># compute error for each prediction to actual value</span>
-<span class="c1">#     tdiffs = np.subtract(user_item_test.loc[user_item_matrix.loc[idx_in_common, :].index, :], user_test_item_est)</span>
     <span class="n">tdiffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">user_item_test</span><span class="p">,</span> <span class="n">user_item_test_preds</span><span class="p">)</span>
     
     <span class="c1"># total errors and keep track of them</span>
@@ -15569,9 +15523,19 @@ The top 10 recommendations for user 20 are the following article names:
 <p>In a nutshell, it doesn't really look like increasing the latent features is helping the model. Being that the training accuracy is high and the test accuracy is low we can conclude that the model is overfitting. There are too many new users and too few older users with historical data to draw from.</p>
 <p>This could occur in a real world case such as TV streaming platform where the entire product is new and there are only a small subset of users that have reviews.</p>
 <p>In those cases, it would be prudent to start out with a simple ranking and/or content-based model.</p>
-<p>Data for ranking recommendation engines and by content/category is much easier to come by.
+<p>Data for ranking recommendation engines and by content/metadata is much easier to come by.
 Using movie/show recommendations as an example in the absence of in-house data, a modeler could easily integrate public API data from IMDB/Rotten Romatoes for movie and show categories and/or ranking.</p>
 <p>I would only switch to to Matrix Factorization <strong>after</strong> there's enough data in-house.</p>
+<p><strong>Addendum per feedback:</strong></p>
+<p>The above graph indicates that matrix factorization is likely not a good fit (initially), but a real world comparison (e.g. A/B Testing) for the other methods would be prudent. 
+One thing to note is that A/B testing for a new product could be dangerous, as experimenting with the user experience of a new product is risky and could 
+undermine early-stage adoption in particular geographic regions and affect word-of-mouth about the quality of the product if not executed properly.</p>
+<p>Additionally, there are other more direct ways of determining efficacy and gathering more data such as having a feedback mechanism for recommendations where a user can upvote or downvote a particular recommended item.
+There are even non-digital and/or qualitative methods such as focus groups, customer surveys, and other methods depending on the product offering and use case.</p>
+<p>Lastly, on-line monitoring, periodic exploratory analysis, and retraining of the matrix factorization model might assist with determining at what point (or what particular threshold of data) 
+for each respective user is necessary for a transition to a more personalized model using SVD. 
+Ideally, a transition to a more personalized model should happen automatically and seemlessly within the customer-facing application so that recommendations gradually get better without
+customers noticing any significant or jarring change in their user experience.</p>
 
 </div>
 </div>
@@ -15594,11 +15558,12 @@ Using movie/show recommendations as an example in the absence of in-house data, 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="prompt input_prompt">In&nbsp;[128]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">call</span>
-<span class="n">call</span><span class="p">([</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;nbconvert&#39;</span><span class="p">,</span> <span class="s1">&#39;Recommendations_with_IBM.ipynb&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># from subprocess import call</span>
+<span class="c1"># call([&#39;python&#39;, &#39;-m&#39;, &#39;nbconvert&#39;, &#39;Recommendations_with_IBM.ipynb&#39;])</span>
+<span class="o">!</span>python3 -m nbconvert Recommendations_with_IBM.ipynb
 </pre></div>
 
     </div>
@@ -15611,15 +15576,45 @@ Using movie/show recommendations as an example in the absence of in-house data, 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[84]:</div>
+    <div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>1</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[NbConvertApp] Converting notebook Recommendations_with_IBM.ipynb to html
+[NbConvertApp] Writing 486544 bytes to Recommendations_with_IBM.html
+</pre>
+</div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pwd
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>/Users/Jon/PycharmProjects/Udacity/udacity_recommendations_with_IBM_old
+</pre>
+</div>
 </div>
 
 </div>
